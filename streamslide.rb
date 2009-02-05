@@ -25,7 +25,8 @@ end
 get '/' do
   
   search_options = { :per_page => 5, :tags => 'lachlanhardy' } 
-  @photos = flickr.photos.search(search_options)
+  # @photos = flickr.photos.search(search_options)
+  @photos = flickr_search("lachlanhardy")['query']['results']['photo']
   
   view :index
 end
@@ -43,7 +44,7 @@ helpers do
   end
   
   def make_flickr_url(photo, size = "b")
-    "http://farm#{photo.farm}.static.flickr.com/#{photo.server}/#{photo.id}_#{photo.secret}_#{size}.jpg"
+    "http://farm#{photo['farm']}.static.flickr.com/#{photo['server']}/#{photo['id']}_#{photo['secret']}_#{size}.jpg"
   end
   
   def flickr_search(subject)
