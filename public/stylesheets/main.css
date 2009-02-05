@@ -1,0 +1,48 @@
+/****
+I Used To Work In A Newspaper
+http://iusedtoworkinanewspaper.com
+20090111
+
+TOC
+- =Generic Rules
+	-- =Generic Text
+		 --- =Links
+		 --- =Headings
+		 --- =Body Text
+- =Structure
+	-- =Main Content
+		 --- =Content
+	-- =Footer
+- =JS Enabled
+
+****/
+
+
+/* - =Generic Rules - */
+    img {border: none;}
+
+	/* -- =Generic Text -- */
+
+		/* --- =Links --- */
+		a:link {color: #F00;}
+		a:visited {color: #fff;}
+		a:hover, a:active, a:focus {color: #0F0;}
+		
+		/* --- =Headings --- */
+		h1, h2, h3, h4, h5, h6 {font-family: "Times New Roman", "Courier New", serif; font-weight: 300; margin: 0 0 0.5em;}
+		h1,
+		h2 {font-size: 1.714em;}
+		h3 {font-size: 1.45em;}
+
+
+/* - =Structure - */
+body {background: #000; color: #fefefe; font: 62.5%/1.4 'Helvetica Neue', Helvetica, Arial, sans-serif;}
+
+#wrapper {font-size: 1.6em; margin: 0 auto 0 auto; position: relative; width: 70em;}
+    
+    #header {}
+        #header h1 {margin: 0;}
+            #header h1 a {display: block;}
+    
+    #page {padding: 1em;}
+        

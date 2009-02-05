@@ -1,0 +1,17 @@
+!!! strict
+%html
+  %head
+    %title Stream Slide
+
+    %link{:rel=>'stylesheet', :href=>'/stylesheets/reset.css', :type => "text/css"} 
+    %link{:rel=>'stylesheet', :href=>'/stylesheets/main.css', :type => "text/css"} 
+    
+  %body 
+    #wrapper
+      #header
+        %h1 
+          %a{:href => "/"} Stream Slide
+        %p We have streams of slides
+        
+      #page
+        = yield
