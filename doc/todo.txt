@@ -1,0 +1,11 @@
+Add catch for images that aren't large enough for "b"
+
+Add jquery
+
+Add slideshow
+
+Add jquery requests to get new images
+
+mod jquery requests to get images without interrupting slide show
+
+make it pretty
