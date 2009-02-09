@@ -37,11 +37,19 @@ TOC
 /* - =Structure - */
 body {background: #000; color: #fefefe; font: 62.5%/1.4 'Helvetica Neue', Helvetica, Arial, sans-serif;}
 
-#wrapper {font-size: 1.6em; margin: 0 auto 0 auto; position: relative; width: 70em;}
+#wrapper {font-size: 1.6em;}
     
     #header {}
         #header h1 {margin: 0;}
             #header h1 a {display: block;}
     
-    #page {padding: 1em;}
+    #page {position: relative; padding: 0 10em 0 10em;}
+        
+        #tags {left: 0; position: absolute; top: 0; width: 10em;}
+        
+        #images {margin: 0 auto 0 auto;}
+        
+        
+        
+        
         

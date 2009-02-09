@@ -14,4 +14,14 @@
         %p We have streams of slides
         
       #page
-        = yield
+        #tags
+          %p Add tags for search:
+          %form{:action => "/", :method => "post"}
+            - inputs = 1
+            - while inputs != 10
+              %input{:type => "text", :name => "tag#{inputs}", :value => ""}
+              - inputs = inputs + 1 
+
+            %input.submit{:type => "submit", :value => "Slide!"}
+        #images
+          = yield

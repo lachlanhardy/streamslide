@@ -1,11 +1,4 @@
 
-= "#{params[:bar]}"
-
-%form{:action => '/', :method => 'post'}
-  %input{:type => 'text', :name => 'bar', :value => 'test'}
-  
-  %input.submit{:type => 'submit', :value => 'Ka-Pow!'}
-
 %ul
   - @photos.each do |photo|
     - url = flickr_url(photo)

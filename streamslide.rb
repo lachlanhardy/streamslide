@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'sinatra'
-# require 'flickr_fu'
 require 'flickraw'
 require 'haml'
 
@@ -23,16 +22,25 @@ end
 
 # homepage
 get '/' do
-
   @photos = flickr_search("party")['query']['results']['photo']
   
   view :index
 end
 
 # posting and putting will trigger the same update operaion
-post '/' do
-  # @bar = ""
-  @photos = flickr_search("#{params[:bar]}")['query']['results']['photo']
+post '/' do 
+  arr = []
+  search = []
+  params.each do |tag|
+    if tag[1] == ""
+      #
+    else
+      arr.push "tags=\"#{tag[1]}\""
+      search = arr.join(" OR ")
+    end
+  end
+  
+  @photos = flickr_search("#{search}")['query']['results']['photo']
   view :index
 end
 
@@ -48,14 +56,15 @@ helpers do
                               :attr_wrapper => '"'}
   end
   
-  def flickr_url(photo, size = "m")
+  def flickr_url(photo, size = "b")
     "http://farm#{photo['farm']}.static.flickr.com/#{photo['server']}/#{photo['id']}_#{photo['secret']}_#{size}.jpg"
   end
   
   def flickr_search(subject)
-     query = "select * from flickr.photos.search where tags=\"#{subject}\" LIMIT 5"
+     query = "select * from flickr.photos.search where #{subject}"
      base_url = "http://query.yahooapis.com/v1/public/yql"
      url = "#{base_url}?q=#{URI.encode(query)}&format=json"
+     puts url
      resp = Net::HTTP.get_response(URI.parse(url))
      data = resp.body
 
