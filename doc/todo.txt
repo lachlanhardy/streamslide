@@ -1,4 +1,5 @@
 Add catch for images that aren't large enough for "b"
+  - Catch 302s in view?!?
 
 Add jquery
 
