@@ -1,5 +1,17 @@
 
+= "#{params[:bar]}"
+
+%form{:action => '/', :method => 'post'}
+  %input{:type => 'text', :name => 'bar', :value => 'test'}
+  
+  %input.submit{:type => 'submit', :value => 'Ka-Pow!'}
+
 %ul
   - @photos.each do |photo|
+    - url = flickr_url(photo)
     %li
-      %img{ :src => make_flickr_url(photo)}
+      %a{:href => url}
+        %img{:src => url}
+      %h3
+        %a{:href => "http://flickr.com/#{photo['owner']}/#{photo['id']}"}
+          = photo['title']

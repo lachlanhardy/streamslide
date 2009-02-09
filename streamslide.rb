@@ -23,11 +23,16 @@ end
 
 # homepage
 get '/' do
+
+  @photos = flickr_search("party")['query']['results']['photo']
   
-  search_options = { :per_page => 5, :tags => 'lachlanhardy' } 
-  # @photos = flickr.photos.search(search_options)
-  @photos = flickr_search("lachlanhardy")['query']['results']['photo']
-  
+  view :index
+end
+
+# posting and putting will trigger the same update operaion
+post '/' do
+  # @bar = ""
+  @photos = flickr_search("#{params[:bar]}")['query']['results']['photo']
   view :index
 end
 
@@ -43,12 +48,12 @@ helpers do
                               :attr_wrapper => '"'}
   end
   
-  def make_flickr_url(photo, size = "b")
+  def flickr_url(photo, size = "m")
     "http://farm#{photo['farm']}.static.flickr.com/#{photo['server']}/#{photo['id']}_#{photo['secret']}_#{size}.jpg"
   end
   
   def flickr_search(subject)
-     query = "select * from flickr.photos.search where tags=\"#{subject}\""
+     query = "select * from flickr.photos.search where tags=\"#{subject}\" LIMIT 5"
      base_url = "http://query.yahooapis.com/v1/public/yql"
      url = "#{base_url}?q=#{URI.encode(query)}&format=json"
      resp = Net::HTTP.get_response(URI.parse(url))
