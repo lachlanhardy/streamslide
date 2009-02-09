@@ -39,15 +39,17 @@ body {background: #000; color: #fefefe; font: 62.5%/1.4 'Helvetica Neue', Helvet
 
 #wrapper {font-size: 1.6em;}
     
-    #header {}
+    #header {margin: 0 0 1em 0;}
         #header h1 {margin: 0;}
             #header h1 a {display: block;}
     
-    #page {position: relative; padding: 0 10em 0 10em;}
+    #page {position: relative; padding: 0 12em 0 12em;}
         
         #tags {left: 0; position: absolute; top: 0; width: 10em;}
         
-        #images {margin: 0 auto 0 auto;}
+        #images {text-align: center;}
+            #images ul {}
+                #images ul li {margin: 0 0 10em 0;}
         
         
         

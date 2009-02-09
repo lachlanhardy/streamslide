@@ -32,9 +32,7 @@ post '/' do
   arr = []
   search = []
   params.each do |tag|
-    if tag[1] == ""
-      #
-    else
+    if tag[1] != ""
       arr.push "tags=\"#{tag[1]}\""
       search = arr.join(" OR ")
     end
