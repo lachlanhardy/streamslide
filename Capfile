@@ -8,7 +8,7 @@ default_run_options[:pty] = true
 
 # be sure to change these
 set :user, 'streamslide'
-set :domain, '173.45.234.65'
+set :domain, 'streamslide.com'
 set :application, 'streamslide'
 
 # the rest should be good
