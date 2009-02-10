@@ -22,12 +22,12 @@ end
 
 # homepage
 get '/' do
-  @photos = flickr_search("party")['query']['results']['photo']
+  @photos = flickr_search("tags=\"party\"")['query']['results']['photo']
   
   view :index
 end
 
-# posting and putting will trigger the same update operaion
+# posting tags
 post '/' do 
   arr = []
   search = []
@@ -54,7 +54,7 @@ helpers do
                               :attr_wrapper => '"'}
   end
   
-  def flickr_url(photo, size = "b")
+  def flickr_url(photo, size = "m")
     "http://farm#{photo['farm']}.static.flickr.com/#{photo['server']}/#{photo['id']}_#{photo['secret']}_#{size}.jpg"
   end
   
