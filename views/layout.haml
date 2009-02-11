@@ -25,3 +25,12 @@
             %input.submit{:type => "submit", :value => "Slide!"}
         #images
           = yield
+
+  // Google jQuery hosting - http://code.google.com/apis/ajaxlibs/
+  %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js", :type => "text/javascript"}
+  
+  // CrossSlide - http://www.gruppo4.com/~tobia/cross-slide.shtml
+  %script{:src => "/javascripts/jquery.cross-slide.js", :type => "text/javascript"}
+  
+  // Run scripts
+  %script{:src => "/javascripts/go.js", :type => "text/javascript"}

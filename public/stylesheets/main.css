@@ -18,6 +18,9 @@ TOC
 ****/
 
 
+/* - =JS disabled - */
+#images ul li {margin: 0 0 10em 0;}
+
 /* - =Generic Rules - */
 
 	/* -- =Generic Text -- */
@@ -34,6 +37,7 @@ TOC
 		h3 {font-size: 1.45em;}
 
 
+
 /* - =Structure - */
 body {background: #000; color: #fefefe; font: 62.5%/1.4 'Helvetica Neue', Helvetica, Arial, sans-serif;}
 
@@ -46,12 +50,9 @@ body {background: #000; color: #fefefe; font: 62.5%/1.4 'Helvetica Neue', Helvet
     #page {position: relative; padding: 0 12em 0 12em;}
         
         #tags {left: 0; position: absolute; top: 0; width: 10em;}
-        
+
         #images {text-align: center;}
-            #images ul {}
-                #images ul li {margin: 0 0 10em 0;}
-        
-        
-        
-        
+            html.js #images ul {height: 500px; width:500px; margin: 0 auto;}
+                html.js #images ul li {margin: 0;}
+                
         

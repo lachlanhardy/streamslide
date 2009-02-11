@@ -3,7 +3,7 @@
   - @photos.each do |photo|
     - url = "http://flickr.com/#{photo['owner']}/#{photo['id']}"
     %li
-      %a{:href => url}
+      %a.img{:href => url}
         %img{:src => flickr_url(photo)}
       %h3
         %a{:href => url}
