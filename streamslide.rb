@@ -54,7 +54,7 @@ helpers do
                               :attr_wrapper => '"'}
   end
   
-  def flickr_url(photo, size = "m")
+  def flickr_url(photo, size = "b")
     "http://farm#{photo['farm']}.static.flickr.com/#{photo['server']}/#{photo['id']}_#{photo['secret']}_#{size}.jpg"
   end
   
