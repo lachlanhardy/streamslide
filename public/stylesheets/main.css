@@ -52,7 +52,7 @@ body {background: #000; color: #fefefe; font: 62.5%/1.4 'Helvetica Neue', Helvet
         #tags {left: 0; position: absolute; top: 0; width: 10em;}
 
         #images {text-align: center;}
-            html.js #images ul {height: 500px; width:500px; margin: 0 auto;}
+            html.js #images ul {height: 1024px; width: 1024px; margin: 0 auto;}
                 html.js #images ul li {margin: 0;}
                 
         
