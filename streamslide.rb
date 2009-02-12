@@ -5,23 +5,14 @@ require 'haml'
 
 # homepage
 get '/' do
-  @photos = flickr_search("tags=\"party\"")['query']['results']['photo']
-  
+  @photos = flickr_search(["party"])
   view :index
 end
 
 # posting tags
 post '/' do 
-  arr = []
-  search = []
-  params.each do |tag|
-    if tag[1] != ""
-      arr.push "tags=\"#{tag[1]}\""
-      search = arr.join(" OR ")
-    end
-  end
-  
-  @photos = flickr_search("#{search}")['query']['results']['photo']
+  @tags = params[:tags]
+  @photos = flickr_search(@tags.split(","))
   view :index
 end
 
@@ -29,7 +20,6 @@ end
 get '/colophon' do
   view :colophon
 end
-
 
 helpers do
   def view(view)
@@ -49,23 +39,14 @@ helpers do
     "http://farm#{photo['farm']}.static.flickr.com/#{photo['server']}/#{photo['id']}_#{photo['secret']}_#{size}.jpg"
   end
   
-  def flickr_search(subject)
-     query = "select * from flickr.photos.search where #{subject}"
-     base_url = "http://query.yahooapis.com/v1/public/yql"
-     url = "#{base_url}?q=#{URI.encode(query)}&format=json"
-     puts url
-     resp = Net::HTTP.get_response(URI.parse(url))
-     data = resp.body
+  def flickr_search(tags)
+     query = "select * from flickr.photos.search where #{tags.map {|t| "tags = '#{t}'"}.join(" OR ")}"
+     url = "http://query.yahooapis.com/v1/public/yql?q=#{URI.encode(query)}&format=json"
+     result = JSON.parse(Net::HTTP.get_response(URI.parse(url)).body)
 
-     # we convert the returned JSON data to native Ruby
-     # data structure - a hash
-     result = JSON.parse(data)
-
-     # if the hash has 'Error' as a key, we raise an error
-     if result.has_key? 'Error'
-        raise "web service error"
-     end
-     return result
+     raise "web service error" if result.has_key? 'Error'
+     
+     return result['query']['results']['photo']
   end
 end
 

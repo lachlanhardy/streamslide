@@ -16,13 +16,9 @@
         
       #page
         #tags
-          %p Add tags for search:
+          %p Add comma-separated tags for search:
           %form{:action => "/", :method => "post"}
-            - inputs = 1
-            - while inputs != 10
-              %input{:type => "text", :name => "tag#{inputs}", :value => ""}
-              - inputs = inputs + 1 
-
+            %input{:type => "text", :name => "tags", :value => @tags}
             %input.submit{:type => "submit", :value => "Slide!"}
         #images
           = yield
