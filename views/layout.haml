@@ -3,8 +3,9 @@
   %head
     %title Stream Slide
 
-    %link{:rel=>'stylesheet', :href=>'/stylesheets/reset.css', :type => "text/css"} 
-    %link{:rel=>'stylesheet', :href=>'/stylesheets/main.css', :type => "text/css"} 
+    %link{:href => versioned_stylesheet("reset"), :media => "screen, projection", :rel => "stylesheet", :type => "text/css"}
+    
+    %link{:href => versioned_stylesheet("main"), :media => "screen, projection", :rel => "stylesheet", :type => "text/css"}
     
   %body 
     #wrapper
@@ -30,7 +31,7 @@
   %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js", :type => "text/javascript"}
   
   // CrossSlide - http://www.gruppo4.com/~tobia/cross-slide.shtml
-  %script{:src => "/javascripts/jquery.cross-slide.js", :type => "text/javascript"}
+  %script{:src => versioned_javascript("jquery.cross-slide"), :type => "text/javascript"}
   
   // Run scripts
-  %script{:src => "/javascripts/go.js", :type => "text/javascript"}
+  %script{:src => versioned_javascript("go"), :type => "text/javascript"}

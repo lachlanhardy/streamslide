@@ -54,6 +54,14 @@ helpers do
                               :attr_wrapper => '"'}
   end
   
+  def versioned_stylesheet(stylesheet)
+    "/stylesheets/#{stylesheet}.css?" + File.mtime(File.join(Sinatra::Application.public, "stylesheets", "#{stylesheet}.css")).to_i.to_s
+  end
+  
+  def versioned_javascript(js)
+    "/javascripts/#{js}.js?" + File.mtime(File.join(Sinatra::Application.public, "javascripts", "#{js}.js")).to_i.to_s
+  end
+  
   def flickr_url(photo, size = "b")
     "http://farm#{photo['farm']}.static.flickr.com/#{photo['server']}/#{photo['id']}_#{photo['secret']}_#{size}.jpg"
   end
@@ -76,7 +84,6 @@ helpers do
      end
      return result
   end
-  
 end
 
 
