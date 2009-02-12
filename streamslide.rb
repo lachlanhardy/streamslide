@@ -3,23 +3,6 @@ require 'sinatra'
 require 'flickraw'
 require 'haml'
 
-# Configure Block.
-configure do
-  
-end
-
-# reset stylesheet
-get '/stylesheets/reset.css' do
-  header 'Content-Type' => 'text/css; charset=utf-8'
-  css :reset
-end
-
-# main stylesheet
-get '/stylesheets/main.css' do
-  header 'Content-Type' => 'text/css; charset=utf-8'
-  css :main
-end
-
 # homepage
 get '/' do
   @photos = flickr_search("tags=\"party\"")['query']['results']['photo']
