@@ -1,8 +1,5 @@
 In order of priority:
 
-Add catch for images that aren't large enough for "b"
-  - Catch 302s in view?!?
-
 Add jquery requests to get new images
 
 mod jquery requests to get images without interrupting slide show

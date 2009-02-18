@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'sinatra'
-require 'flickraw'
+require 'flickraw' # Not actually using flickr - just the JSON and NET constants... gotta be a better way!
 require 'haml'
 
 # homepage
@@ -35,18 +35,14 @@ helpers do
     "/javascripts/#{js}.js?" + File.mtime(File.join(Sinatra::Application.public, "javascripts", "#{js}.js")).to_i.to_s
   end
   
-  def flickr_url(photo, size = "b")
-    "http://farm#{photo['farm']}.static.flickr.com/#{photo['server']}/#{photo['id']}_#{photo['secret']}_#{size}.jpg"
-  end
-  
   def flickr_search(tags)
-     query = "select * from flickr.photos.search where #{tags.map {|t| "tags = '#{t}'"}.join(" OR ")}"
-     url = "http://query.yahooapis.com/v1/public/yql?q=#{URI.encode(query)}&format=json"
-     result = JSON.parse(Net::HTTP.get_response(URI.parse(url)).body)
+    query = "SELECT * FROM flickr.photos.sizes WHERE label=\"Large\" AND photo_id IN (SELECT id FROM flickr.photos.search WHERE #{tags.map {|t| "tags = '#{t}'"}.join(" OR ")})"
+    url = "http://query.yahooapis.com/v1/public/yql?q=#{URI.encode(query)}&format=json"
+    result = JSON.parse(Net::HTTP.get_response(URI.parse(url)).body)
 
-     raise "web service error" if result.has_key? 'Error'
+    raise "web service error" if result.has_key? 'Error'
      
-     return result['query']['results']['photo']
+    return result['query']['results']['size']
   end
 end
 
