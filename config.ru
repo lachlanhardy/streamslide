@@ -10,5 +10,7 @@ Sinatra::Application.default_options.merge!(
   :env => ENV['RACK_ENV'] ? ENV["RACK_ENV"].to_sym : "development"
 )
 
+set :raise_errors, true
+
 require 'streamslide'
 run Sinatra.application
