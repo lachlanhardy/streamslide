@@ -2,6 +2,4 @@
   - @photos.each do |photo|
     %li
       %a.img{:href => photo['url']}
-        %img{:src => photo['source']}
-      %h3
-        %a{:href => photo['url']}
+        %img{:height => photo['height'], :src => photo['source'], :width => photo['width']}
