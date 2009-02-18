@@ -28,7 +28,7 @@ helpers do
   end
   
   def versioned_stylesheet(stylesheet)
-    "/stylesheets/#{stylesheet}.css?" + File.mtime(File.join(Sinatra::Application.options.public, "stylesheets", "#{stylesheet}.css")).to_i.to_s
+    "/stylesheets/#{stylesheet}.css?" + File.mtime(File.join(Sinatra::Application.public, "stylesheets", "#{stylesheet}.css")).to_i.to_s
   end
   
   def versioned_javascript(js)
@@ -45,5 +45,4 @@ helpers do
     return result['query']['results']['size']
   end
 end
-
 
