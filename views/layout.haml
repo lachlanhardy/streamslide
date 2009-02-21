@@ -12,16 +12,16 @@
       #header
         %h1 
           %a{:href => "/"} Stream Slide
-        %p We have streams of slides
-        
-      #page
-        #tags
-          %p Add comma-separated tags for search:
-          %form{:action => "/", :method => "post"}
-            %input{:type => "text", :name => "tags", :value => @tags}
+        %form{:action => "/", :method => "post"}
+          %label{:for => "tags"} Add comma-separated tags for search:  
+          %input{:id => "tags", :name => "tags", :type => "text",  :value => @tags}
             %input.submit{:type => "submit", :value => "Slide!"}
+      #page
         #images
           = yield
+      
+      #footer
+        %p We have streams of slides.
 
   // Google jQuery hosting - http://code.google.com/apis/ajaxlibs/
   %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js", :type => "text/javascript"}

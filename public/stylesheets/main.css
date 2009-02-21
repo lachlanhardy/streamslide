@@ -32,8 +32,8 @@ TOC
 		
 		/* --- =Headings --- */
 		h1, h2, h3, h4, h5, h6 {font-family: "Times New Roman", "Courier New", serif; font-weight: 300; margin: 0 0 0.5em;}
-		h1,
-		h2 {font-size: 1.714em;}
+		h1 {font-size: 2.25em;}
+	    h2 {font-size: 1.714em;}
 		h3 {font-size: 1.45em;}
 
 /* - =Structure - */
@@ -41,14 +41,19 @@ body {background: #000; color: #fefefe; font: 62.5%/1.4 'Helvetica Neue', Helvet
 
 #wrapper {font-size: 1.6em;}
     
-    #header {margin: 0 0 1em 0;}
-        #header h1 {margin: 0;}
+    #header {margin: 0 0 1em 0; overflow: auto;}
+        #header h1 {float: left; margin: 0 0.4em 0 0.4em; width: auto;}
             #header h1 a {display: block;}
-    
-    #page {position: relative; padding: 0 12em 0 12em;}
+        #header form {float: left; line-height: 2.3em; margin: 0.85em 0 0 0; width: auto;}
+            #header form input {width: 50em;}
+            #header form input.submit {width: auto;}
         
-        #tags {left: 0; position: absolute; top: 0; width: 12em;}
+    #page {position: relative; padding: 0 12em 0 12em;}
 
         #images {text-align: center;}
             html.js #images ul {height: 1024px; width: 1024px; margin: 0 auto;}
                 html.js #images ul li {margin: 0;}
+                    html.js #images img {margin: 0 auto;}
+                
+                
+    #footer {background: #000; color: #888; margin: 2em 0 1em 0; text-align: center;}

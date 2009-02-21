@@ -5,7 +5,8 @@ require 'haml'
 
 # homepage
 get '/' do
-  @photos = flickr_search(["party"])
+  @tags = ["party, band"]
+  @photos = flickr_search(@tags)
   view :index
 end
 
