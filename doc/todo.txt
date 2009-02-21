@@ -1,6 +1,10 @@
 In order of priority:
 
+Fix layout for new scheme
+
 Fix URLs to go to photo page, not size page
+
+write crazy URL structure for permanence of results and sharing
 
 Add jquery requests to get new images
 
@@ -8,5 +12,4 @@ mod jquery requests to get images without interrupting slide show
 
 make it pretty
 
-write crazy URL structure for permanence of results and sharing
 
