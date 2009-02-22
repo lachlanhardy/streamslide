@@ -29,7 +29,7 @@
             %input.submit{:type => "submit", :value => "Slide!"}
         %span#permalink
           [
-          %a{:href => request.url} Permalink
+          %a{:href => "#{request.url}#{@tags}"} Permalink
           ]
         
       #page
