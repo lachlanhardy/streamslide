@@ -2,7 +2,7 @@ $(document).ready(function(){
   // making sexy unobtrusive CSS possible since 2006
 	$("html").addClass("js");
 	
-	var slideshow = [];
+    var slideshow = [];
 	$('ul li a img').each(function() {
         slideshow.push({ src: this.src, href: $(this).parents("a").attr("href") });
     });

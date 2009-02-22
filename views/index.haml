@@ -1,5 +1,5 @@
 %ul
   - @photos.each do |photo|
     %li
-      %a{:href => photo['url']}
+      %a{:href => photo['url'].gsub(/(.+)sizes\/l\/$/, '\1')}
         %img{:height => photo['height'], :src => photo['source'], :width => photo['width']}
