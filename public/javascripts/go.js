@@ -2,22 +2,17 @@ $(document).ready(function(){
   // making sexy unobtrusive CSS possible since 2006
 	$("html").addClass("js");
 	
-	
 	var slideshow = [];
-	$('ul li a.img img').each(function() {
-        // var href = $(this).parents("a").attr("href");
-        //         console.log(href);
-
+	$('ul li a img').each(function() {
         slideshow.push({ src: this.src, href: $(this).parents("a").attr("href") });
-});
+    });
 	
 	$("ul").crossSlide({
-	               sleep: 1,
-	               fade: 0.5
-	           }, 
-	           slideshow
-	       );
-	       
+           sleep: 2,
+           fade: 1
+       }, 
+       slideshow
+    );
 	
 	
     // $('#test3').crossSlide({

@@ -1,7 +1,5 @@
 In order of priority:
 
-Fix layout for new scheme
-
 Fix URLs to go to photo page, not size page
 
 write crazy URL structure for permanence of results and sharing
