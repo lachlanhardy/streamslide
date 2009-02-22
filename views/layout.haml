@@ -2,11 +2,22 @@
 %html
   %head
     %title Stream Slide
+    
+    %script{:type => "text/javascript"} if (window.location.hash) {window.location = "/" + window.location.hash.replace(/#()/, '');}
 
     %link{:href => versioned_stylesheet("reset"), :media => "screen, projection", :rel => "stylesheet", :type => "text/css"}
     
     %link{:href => versioned_stylesheet("main"), :media => "screen, projection", :rel => "stylesheet", :type => "text/css"}
-    
+
+    // Google jQuery hosting - http://code.google.com/apis/ajaxlibs/
+    %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js", :type => "text/javascript"}
+
+    // CrossSlide - http://www.gruppo4.com/~tobia/cross-slide.shtml
+    %script{:src => versioned_javascript("jquery.cross-slide"), :type => "text/javascript"}
+
+    // Run scripts
+    %script{:src => versioned_javascript("go"), :type => "text/javascript"}    
+      
   %body 
     #wrapper
       #header
@@ -16,6 +27,11 @@
           %label{:for => "tags"} Add comma-separated tags for search:  
           %input{:id => "tags", :name => "tags", :type => "text",  :value => @tags}
             %input.submit{:type => "submit", :value => "Slide!"}
+        %span#permalink
+          [
+          %a{:href => request.url} Permalink
+          ]
+        
       #page
         #images
           = yield
@@ -23,14 +39,7 @@
       #footer
         %p We have streams of slides.
 
-  // Google jQuery hosting - http://code.google.com/apis/ajaxlibs/
-  %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js", :type => "text/javascript"}
   
-  // CrossSlide - http://www.gruppo4.com/~tobia/cross-slide.shtml
-  %script{:src => versioned_javascript("jquery.cross-slide"), :type => "text/javascript"}
-  
-  // Run scripts
-  %script{:src => versioned_javascript("go"), :type => "text/javascript"}
   
   / reinvigorate tracking code
   %script{ :type => "text/javascript",  :src => "http://include.reinvigorate.net/re_.js"}

@@ -31,10 +31,7 @@ TOC
 		a:hover, a:active, a:focus {color: #0F0;}
 		
 		/* --- =Headings --- */
-		h1, h2, h3, h4, h5, h6 {font-family: "Times New Roman", "Courier New", serif; font-weight: 300; margin: 0 0 0.5em;}
-		h1 {font-size: 2.25em;}
-	    h2 {font-size: 1.714em;}
-		h3 {font-size: 1.45em;}
+		h1 {font: 300 2.25em 'Helvetica Neue', Helvetica, Arial, sans-serif;}
 
 /* - =Structure - */
 body {background: #000; color: #fefefe; font: 62.5%/1.4 'Helvetica Neue', Helvetica, Arial, sans-serif;}
@@ -42,11 +39,12 @@ body {background: #000; color: #fefefe; font: 62.5%/1.4 'Helvetica Neue', Helvet
 #wrapper {font-size: 1.6em;}
     
     #header {margin: 0 0 1em 0; overflow: auto;}
-        #header h1 {float: left; margin: 0 0.4em 0 0.4em; width: auto;}
+        #header h1 {float: left; margin: 0.13em 0.4em 0 0.4em; width: auto;}
             #header h1 a {display: block;}
-        #header form {float: left; line-height: 2.3em; margin: 0.85em 0 0 0; width: auto;}
+        #header form {float: left; line-height: 2.3em; margin: 0.85em 1em 0 0; width: auto;}
             #header form input {width: 50em;}
             #header form input.submit {width: auto;}
+        #permalink {display: block; font-size: 0.8em; margin: 1.9em 0 0 0;}
         
     #page {position: relative; padding: 0 12em 0 12em;}
 

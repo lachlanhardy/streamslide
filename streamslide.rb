@@ -17,6 +17,13 @@ post '/' do
   view :index
 end
 
+# getting tags from permanent urls
+get '/:tags' do 
+  @tags = params[:tags]
+  @photos = flickr_search(@tags.split(","))
+  view :index
+end
+
 # colophon
 get '/colophon' do
   view :colophon

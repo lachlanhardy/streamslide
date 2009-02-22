@@ -1,6 +1,6 @@
 $(document).ready(function(){
   // making sexy unobtrusive CSS possible since 2006
-	$("html").addClass("js");
+	$("html").addClass("js");	
 	
     var slideshow = [];
 	$('ul li a img').each(function() {

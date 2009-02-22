@@ -1,13 +1,10 @@
 In order of priority:
 
-write crazy URL structure for permanence of results and sharing
-
 Add jquery requests to get new images
 
 mod jquery requests to get images without interrupting slide show
 
+hack urls/permalinks to match jquery requests
+
 Set up array structure so images can be pulled from slideshow without stopping flow
-
-
-
 
