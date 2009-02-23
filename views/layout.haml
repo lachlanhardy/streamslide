@@ -29,9 +29,8 @@
             %input.submit{:type => "submit", :value => "Slide!"}
         %span#permalink
           [
-          %a{:href => "#{request.url}#{@tags}"} Permalink
+          %a{:href => "#{@tags}"} Permalink
           ]
-        
       #page
         #images
           = yield
