@@ -29,7 +29,7 @@
             %input.submit{:type => "submit", :value => "Slide!"}
         %span#permalink
           [
-          %a{:href => "#{@tags}"} Permalink
+          %a{:href => @tags.gsub(/\s/, '')} Permalink
           ]
       #page
         #images
@@ -37,8 +37,6 @@
       
       #footer
         %p We have streams of slides.
-
-  
   
   / reinvigorate tracking code
   %script{ :type => "text/javascript",  :src => "http://include.reinvigorate.net/re_.js"}
