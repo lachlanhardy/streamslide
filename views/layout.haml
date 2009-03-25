@@ -1,6 +1,8 @@
 !!! strict
-%html
+%html{:lang => "en-au"}
   %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+    %meta{:content => "IE=EmulateIE7", "http-equiv" => "X-UA-Compatible"}
     %title Stream Slide
     
     %script{:type => "text/javascript"} if (window.location.hash) {window.location = "/" + window.location.hash.replace(/#()/, '');}
@@ -24,8 +26,10 @@
         %h1 
           %a{:href => "/"} Stream Slide
         %form{:action => "/", :method => "post"}
-          %label{:for => "tags"} Add comma-separated tags for search:  
-          %input{:id => "tags", :name => "tags", :type => "text",  :value => @tags}
+          %fieldset
+            %legend
+            %label{:for => "tags"} Add comma-separated tags for search:  
+            %input{:id => "tags", :name => "tags", :type => "text",  :value => @tags}
             %input.submit{:type => "submit", :value => "Slide!"}
         %span#permalink
           [
@@ -38,7 +42,7 @@
       #footer
         %p We have streams of slides.
   
-  / reinvigorate tracking code
-  %script{ :type => "text/javascript",  :src => "http://include.reinvigorate.net/re_.js"}
-  %script{ :type => "text/javascript"} re_("c9e9a-mx3780v689");
+    / reinvigorate tracking code
+    %script{ :type => "text/javascript",  :src => "http://include.reinvigorate.net/re_.js"}
+    %script{ :type => "text/javascript"} re_("c9e9a-mx3780v689");
 
