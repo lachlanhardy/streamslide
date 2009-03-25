@@ -5,8 +5,8 @@ require 'haml'
 
 # homepage
 get '/' do
-  @tags = ["party, band"]
-  @photos = flickr_search(@tags)
+  @tags = "party, band"
+  @photos = flickr_search(@tags.split(","))
   view :index
 end
 
@@ -20,6 +20,7 @@ end
 # getting tags from permanent urls
 get '/:tags' do 
   @tags = params[:tags]
+  puts @tags
   @photos = flickr_search(@tags.split(","))
   view :index
 end
