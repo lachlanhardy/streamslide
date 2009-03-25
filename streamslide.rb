@@ -20,7 +20,6 @@ end
 # getting tags from permanent urls
 get '/:tags' do 
   @tags = params[:tags]
-  puts @tags
   @photos = flickr_search(@tags.split(","))
   view :index
 end
