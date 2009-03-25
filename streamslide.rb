@@ -31,7 +31,7 @@ end
 
 helpers do
   def view(view)
-    haml view, :options => {:format => :html4,
+    haml view, :options => {:format => :html5,
                               :attr_wrapper => '"'}
   end
   
