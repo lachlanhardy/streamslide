@@ -59,7 +59,7 @@ helpers do
     public_results = yql_query("SELECT * FROM flickr.photos.sizes WHERE label=\"Large\" AND photo_id IN (SELECT id FROM flickr.photos.search WHERE #{plain_tags.map {|t| "tags = '#{t}'"}.join(" OR ")})")
     user_results   = yql_query("SELECT * FROM flickr.photos.sizes WHERE (#{user_tag_IDs.map {|t| "photo_id = '#{t}'"}.join(" OR ")}) AND label=\"Large\"")
         
-    public_results["size"] + user_results["size"]
+    (public_results["size"] || []) + (user_results["size"] || [])
   end
   
   def tag_sorting(tags)
