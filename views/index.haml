@@ -1,5 +1,8 @@
-%ul
-  - @photos.each do |photo|
-    %li
-      %a{:href => photo['url'].gsub(/(.+)sizes\/l\/$/, '\1')}
-        %img{:alt => "", :height => photo['height'], :src => photo['source'], :width => photo['width']}
+- if @photos
+  %ul
+    - @photos.each do |photo|
+      %li
+        %a{:href => photo['url'].gsub(/(.+)sizes\/l\/$/, '\1')}
+          %img{:alt => "", :height => photo['height'], :src => photo['source'], :width => photo['width']}
+- else
+  %p Nothing to see here! Why not try some different tags?

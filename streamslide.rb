@@ -48,18 +48,18 @@ helpers do
 
     user_tag_IDs = []
     user_tags.each do |tag|
-      tag = tag.split(":")
-      yql_query("select href from html where url=\"http://flickr.com/photos/#{tag[0]}/tags/#{tag[1]}\" and xpath=\'//span[@class=\"photo_container pc_t\"]/a[@href]\'")['query']['results']['a'].each do |id|
-        user_tag_IDs.push id['href'].gsub(/\/photos\/.+\/(.+)\//, '\1')
+      user, tag = tag.split(":")
+      if results = yql_query("select href from html where url=\"http://flickr.com/photos/#{user}/tags/#{tag}\" and xpath=\'//span[@class=\"photo_container pc_t\"]/a[@href]\'")
+        results['a'].each do |id|
+          user_tag_IDs.push id['href'].gsub(/\/photos\/.+\/(.+)\//, '\1')
+        end
       end
     end
     
-    result = yql_query("SELECT * FROM flickr.photos.sizes WHERE label=\"Large\" AND photo_id IN (SELECT id FROM flickr.photos.search WHERE #{plain_tags.map {|t| "tags = '#{t}'"}.join(" OR ")})")
-    
-    result.merge!(yql_query("SELECT * FROM flickr.photos.sizes WHERE (#{user_tag_IDs.map {|t| "photo_id = '#{t}'"}.join(" OR ")}) AND label=\"Large\""))
-    
-    raise "web service error" if result.has_key? 'Error'
-    return result['query']['results']['size']
+    public_results = yql_query("SELECT * FROM flickr.photos.sizes WHERE label=\"Large\" AND photo_id IN (SELECT id FROM flickr.photos.search WHERE #{plain_tags.map {|t| "tags = '#{t}'"}.join(" OR ")})")
+    user_results   = yql_query("SELECT * FROM flickr.photos.sizes WHERE (#{user_tag_IDs.map {|t| "photo_id = '#{t}'"}.join(" OR ")}) AND label=\"Large\"")
+        
+    public_results["size"] + user_results["size"]
   end
   
   def tag_sorting(tags)
@@ -69,8 +69,8 @@ helpers do
   end
   
   def yql_query(query_string)
-    url = "http://query.yahooapis.com/v1/public/yql?q=#{URI.encode(query_string)}&format=json"
-    JSON.parse(Net::HTTP.get_response(URI.parse(url)).body)
+    result = JSON.parse(Net::HTTP.get_response(URI.parse("http://query.yahooapis.com/v1/public/yql?q=#{URI.encode(query_string)}&format=json")).body)
+    result.has_key?('error') ? {} : result['query']['results']
   end
 end
 
