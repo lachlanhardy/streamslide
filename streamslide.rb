@@ -56,14 +56,9 @@ helpers do
       user_tag_array.push id['href'].gsub(/\/photos\/.+\/(.+)\//, '\1')
     end
 
-    user_query_result2 = yql_query("SELECT * FROM flickr.photos.sizes WHERE label=\"Large\" AND #{user_tag_array.map {|t| "photo_id = '#{t}'"}.join(" OR ")}")
-    
-    puts user_query_result2
+    user_query_result2 = yql_query("SELECT * FROM flickr.photos.sizes WHERE (#{user_tag_array.map {|t| "photo_id = '#{t}'"}.join(" OR ")}) AND label=\"Large\"")
     
     result = result.merge(user_query_result2)
-    
-    puts result
-    
     
     raise "web service error" if result.has_key? 'Error'
     return result['query']['results']['size']
