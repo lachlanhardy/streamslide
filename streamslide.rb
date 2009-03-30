@@ -21,7 +21,6 @@ end
 get '/:tags' do 
   @tags = params[:tags]
   @photos = flickr_search(@tags.split(","))
-  puts @photos
   view :index
 end
 
@@ -33,7 +32,7 @@ end
 helpers do
   def view(view)
     haml view, :options => {:format => :html5,
-                              :attr_wrapper => '"'}
+                            :attr_wrapper => '"'}
   end
   
   def versioned_stylesheet(stylesheet)
@@ -47,18 +46,17 @@ helpers do
   def flickr_search(tags)
     plain_tags, user_tags = tag_sorting(tags)
 
+    user_tag_IDs = []
+    user_tags.each do |tag|
+      tag = tag.split(":")
+      yql_query("select href from html where url=\"http://flickr.com/photos/#{tag[0]}/tags/#{tag[1]}\" and xpath=\'//span[@class=\"photo_container pc_t\"]/a[@href]\'")['query']['results']['a'].each do |id|
+        user_tag_IDs.push id['href'].gsub(/\/photos\/.+\/(.+)\//, '\1')
+      end
+    end
+    
     result = yql_query("SELECT * FROM flickr.photos.sizes WHERE label=\"Large\" AND photo_id IN (SELECT id FROM flickr.photos.search WHERE #{plain_tags.map {|t| "tags = '#{t}'"}.join(" OR ")})")
     
-    user_query_result = yql_query("select href from html where url=\"http://flickr.com/photos/lachlanhardy/tags/whippet\" and xpath=\'//span[@class=\"photo_container pc_t\"]/a[@href]\'")
-    
-    user_tag_array = []
-    user_query_result['query']['results']['a'].each do |id|
-      user_tag_array.push id['href'].gsub(/\/photos\/.+\/(.+)\//, '\1')
-    end
-
-    user_query_result2 = yql_query("SELECT * FROM flickr.photos.sizes WHERE (#{user_tag_array.map {|t| "photo_id = '#{t}'"}.join(" OR ")}) AND label=\"Large\"")
-    
-    result = result.merge(user_query_result2)
+    result.merge!(yql_query("SELECT * FROM flickr.photos.sizes WHERE (#{user_tag_IDs.map {|t| "photo_id = '#{t}'"}.join(" OR ")}) AND label=\"Large\""))
     
     raise "web service error" if result.has_key? 'Error'
     return result['query']['results']['size']
@@ -67,7 +65,6 @@ helpers do
   def tag_sorting(tags)
     plain_tags = []
     user_tags = []
-    
     tags.each do |tag|
       if tag[/:/]
         user_tags.push tag
@@ -75,7 +72,6 @@ helpers do
         plain_tags.push tag
       end
     end
-    
     return plain_tags, user_tags
   end
   
