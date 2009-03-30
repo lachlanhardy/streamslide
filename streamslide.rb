@@ -63,16 +63,9 @@ helpers do
   end
   
   def tag_sorting(tags)
-    plain_tags = []
-    user_tags = []
-    tags.each do |tag|
-      if tag[/:/]
-        user_tags.push tag
-      else
-        plain_tags.push tag
-      end
-    end
-    return plain_tags, user_tags
+    user_tags  = tags.select { |t| t[/:/] }
+    plain_tags = tags - user_tags
+    [plain_tags, user_tags]
   end
   
   def yql_query(query_string)
