@@ -2,6 +2,10 @@ In order of priority:
 
 Catch errors such as 404s and nil responses.
 
+Encode colons in URLs
+
+Fix permalink for user-specific tags
+
 Add jquery requests to get new images
 
 mod jquery requests to get images without interrupting slide show
