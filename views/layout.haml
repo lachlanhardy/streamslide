@@ -32,7 +32,7 @@
             %input.submit{:type => "submit", :value => "Slide!"}
         %span#permalink
           [
-          %a{:href => @tags.gsub(/\s/, '')} Permalink
+          %a{:href => "/#{@tags.gsub(/\s/, '')}"} Permalink
           ]
       #page
         #images
