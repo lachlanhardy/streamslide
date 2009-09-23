@@ -1,2 +1,3 @@
 - 500 errors need catching
 - nothing found in the Flickr API causes a 500 error
+- http://www.shadowbox-js.com/
